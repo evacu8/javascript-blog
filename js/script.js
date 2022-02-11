@@ -68,22 +68,25 @@
             titleLinkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
             // console.log(titleLinkHTML);
 
-            /* insert created HTML link into HTML variable */
+            /* join created HTML links into HTML variable */
 
             titleLinksListHTML = titleLinksListHTML + titleLinkHTML;
             
         }
 
-        // console.log(titleLinksListHTML);
+        /* insert HTML variable into ul */
 
         titlesListSelector.innerHTML = titleLinksListHTML;
+
+        /* click event listener for title links */
+
+        const links = document.querySelectorAll('.titles a');
+        console.log(links);
+
+        for(let link of links){
+            link.addEventListener('click', titleClickHandler);
+        }
     }
 
     generateTitleLinks();
-
-    const links = document.querySelectorAll('.titles a');
-
-    for(let link of links){
-        link.addEventListener('click', titleClickHandler);
-    }
 }
