@@ -2,8 +2,11 @@
 
 /* Variables */
 
-$color-light: #fff;
-$color-dark: #444;
+$color-light: white;
+$color-dark: #353b48;
+$color-one: #192a56;
+$color-two: #f5f6fa;
+$color-three: #00a8ff;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -46,18 +49,20 @@ body {
 .wrapper {
   display: flex;
   margin-left: 10px;
+  height: 100vh;
 }
 
 .sidebar {
   flex: 1 0 0;
+  background-color: $color-three;
 }
 
 .posts {
   flex: 2 0 0;
+  position: relative;
 }
 
 .sidebar, .posts {
-  background: $color-light;
   margin-right: 10px;
   padding: 40px;
   border: 1px solid $color-dark;
@@ -68,10 +73,17 @@ body {
 
 .logo {
   font-family: $font-logo;
+  color: $color-two;
   font-weight: 400;
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  margin: 10px;
+  padding: 100px 0;
+  background-image: url('/images/uk-flag.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 /* Lists */
@@ -80,6 +92,10 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  a {
+    text-decoration: none;
+    color: $color-one;
+  }
   .active {
     font-weight: bold;
   }
@@ -102,9 +118,26 @@ body {
 /* Post */
 
 .post {
-  display: none;
+  opacity: 0;
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  &::after {
+    position: absolute;
+    background-image: url('/images/uk-outline.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: -999;
+    opacity: 0.12;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    content: "";
+  }
   &.active {
-    display: block;
+    opacity: 1;
   }
 }
 
