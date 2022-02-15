@@ -37,7 +37,7 @@
   };
 
   const generateTitleLinks = function(){
-    
+
     /* [DONE] for each article: */
 
     const allArticles = document.querySelectorAll('.posts article');
@@ -56,13 +56,13 @@
       const articleTitle = article.querySelector('h3').innerText;
 
       /* [DONE] create HTML for li */
-        
+
       titleLinkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
 
       /* [DONE] join created HTML links into HTML variable */
 
       titleLinksListHTML = titleLinksListHTML + titleLinkHTML;
-        
+
     }
 
     /* [DONE] insert HTML variable into ul */
