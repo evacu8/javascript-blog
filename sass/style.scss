@@ -38,6 +38,7 @@ body {
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
+
   span {
     text-transform: none;
     font-weight: 400;
@@ -50,7 +51,6 @@ body {
 .wrapper {
   display: flex;
   margin-left: 10px;
-  // height: 100%;
 }
 
 .sidebar {
@@ -93,10 +93,12 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+
   a {
     text-decoration: none;
     color: $color-one;
   }
+
   .active {
     font-weight: bold;
   }
@@ -122,11 +124,8 @@ body {
   display: none;
   visibility: hidden;
   z-index: 0;
-  // left: 40px;
-  // right: 40px;
-  // top: 0;
-  // bottom: 0;
   transition: all 2s;
+
   &::after {
     position: absolute;
     background-image: url('/images/uk-outline.png');
@@ -141,6 +140,7 @@ body {
     left: 5%;
     content: "";
   }
+
   &.active {
     display: block;
     visibility: visible;
@@ -158,6 +158,7 @@ body {
 
 .post-tags {
   display: flex;
+
   p {
     margin: 0 10px 0 0;
   }
@@ -167,9 +168,11 @@ body {
   .wrapper {
     flex-wrap: wrap;
   }
+
   .sidebar {
     flex: 1;
   }
+
   .posts {
     order: 3;
     flex: 1 100%;
