@@ -50,7 +50,7 @@ body {
 .wrapper {
   display: flex;
   margin-left: 10px;
-  height: 100vh;
+  // height: 100%;
 }
 
 .sidebar {
@@ -119,11 +119,14 @@ body {
 /* Post */
 
 .post {
-  opacity: 0;
-  position: absolute;
-  left: 40px;
-  right: 40px;
-  transition: opacity 2s;
+  display: none;
+  visibility: hidden;
+  z-index: 0;
+  // left: 40px;
+  // right: 40px;
+  // top: 0;
+  // bottom: 0;
+  transition: all 2s;
   &::after {
     position: absolute;
     background-image: url('/images/uk-outline.png');
@@ -132,14 +135,16 @@ body {
     background-size: contain;
     z-index: -999;
     opacity: 0.12;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
     content: "";
   }
   &.active {
-    opacity: 1;
+    display: block;
+    visibility: visible;
+    z-index: 1;
   }
 }
 
@@ -155,5 +160,18 @@ body {
   display: flex;
   p {
     margin: 0 10px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    flex-wrap: wrap;
+  }
+  .sidebar {
+    flex: 1;
+  }
+  .posts {
+    order: 3;
+    flex: 1 100%;
   }
 }
