@@ -94,7 +94,6 @@
 
       const optArticleTagsSelector = '.post-tags .list';
       const tagsWrapper = article.querySelector(optArticleTagsSelector);
-      // console.log(tagsWrapper);
 
       /* [DONE] make html variable with empty string */
 
@@ -104,12 +103,10 @@
       /* [DONE] get tags from data-tags attribute */
 
       const articleTags = article.getAttribute('data-tags');
-      // console.log(articleTags);
 
       /* [DONE] split tags into array */
 
       const articleTagsArray = articleTags.split(' ');
-      // console.log(articleTagsArray);
 
       /* [DONE] START LOOP: for each tag */
 
@@ -118,8 +115,6 @@
         /* [DONE] generate HTML of the link */
 
         tagLinkHTML = `<li><a href="#tag-${tag}"><span>${tag}</span></a></li>`;
-
-        // console.log(tagLinkHTML);
 
         /* [DONE] add generated code to html variable */
 
@@ -130,7 +125,6 @@
       /* [DONE] insert HTML of all the links into the tags wrapper */
 
       tagsWrapper.innerHTML = tagLinksListHTML;
-      // console.log(tagLinksListHTML);
 
     /* [DONE] END LOOP: for every article: */
     }
@@ -139,47 +133,71 @@
   generateTags();
 
   const tagClickHandler = function (event){
+
     /* [DONE] prevent default action for this event */
+
     event.preventDefault();
+
     /* [DONE] make new constant named "clickedElement" and give it the value of "this" */
+
     const clickedElement = this;
+
     /* [DONE] make a new constant "href" and read the attribute "href" of the clicked element */
+
     const href = clickedElement.getAttribute('href');
-    // console.log(href);
+
     /* [DONE] make a new constant "tag" and extract tag from the "href" constant */
+
     const tag = href.replace('#tag-', '');
-    // console.log(tag);
+
     /* find all tag links with class active */
+
     const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
-    // console.log(activeTagLinks);
+
     /* START LOOP: for each active tag link */
+
     for (let activeTagLink of activeTagLinks) {
+
       /* remove class active */
+
       activeTagLink.classList.remove('active');
+
     /* END LOOP: for each active tag link */
     }
     /* find all tag links with "href" attribute equal to the "href" constant */
+
     const selectedTagLinks = document.querySelectorAll(`a[href="${href}"`);
-    // console.log(selectedTagLinks);
+
     /* START LOOP: for each found tag link */
+
     for (let selectedTagLink of selectedTagLinks) {
+
       /* add class active */
+
       selectedTagLink.classList.add('active');
+
     /* END LOOP: for each found tag link */
     }
-    // console.log(selectedTagLinks);
+
     /* execute function "generateTitleLinks" with article selector as argument */
+
     generateTitleLinks(`[data-tags~="${tag}"]`);
   };
 
   const addClickListenersToTags = function (){
+
     /* [DONE] find all links to tags */
+
     const links = document.querySelectorAll('a[href^="#tag-"');
-    // console.log(links);
+
     /* [DONE] START LOOP: for each link */
+
     for (let link of links) {
+
       /* [DONE] add tagClickHandler as event listener for that link */
+
       link.addEventListener('click', tagClickHandler);
+
     /* [DONE] END LOOP: for each link */
     }
   };
@@ -198,7 +216,6 @@
 
       const optArticleAuthorSelector = '.post-author';
       const authorWrapper = article.querySelector(optArticleAuthorSelector);
-      console.log(authorWrapper);
 
       /* [DONE] make html variable with empty string */
 
@@ -207,18 +224,14 @@
       /* [DONE] get author from data-author attribute */
 
       const articleAuthor = article.getAttribute('data-author');
-      console.log(articleAuthor);
 
       /* [DONE] generate HTML of the link */
 
       authorLinkHTML = `<li><a href="#author-${articleAuthor}"><span>${articleAuthor}</span></a></li>`;
 
-      console.log(authorLinkHTML);
-
       /* [DONE] insert HTML of the link into the author wrapper */
 
       authorWrapper.innerHTML = `by ${authorLinkHTML}`;
-      console.log(authorLinkHTML);
 
     /* [DONE] END LOOP: for every article: */
     }
