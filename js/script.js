@@ -82,6 +82,9 @@
 
   const generateTags = function (){
 
+    /* [DONE] create a new variable allTags with an empty array */
+    let allTags = [];
+
     /* [DONE] find all articles */
 
     const allArticles = document.querySelectorAll('.post');
@@ -120,6 +123,11 @@
 
         tagLinksListHTML = tagLinksListHTML + ' ' + tagLinkHTML;
 
+        /* [DONE] check if this link is NOT already in allTags */
+        if(allTags.indexOf(tagLinkHTML) == -1){
+        /* [DONE] add generated code to allTags array */
+          allTags.push(tagLinkHTML);
+        }
       /* [DONE] END LOOP: for each tag */
       }
       /* [DONE] insert HTML of all the links into the tags wrapper */
@@ -128,6 +136,14 @@
 
     /* [DONE] END LOOP: for every article: */
     }
+    /* [DONE] find list of tags in right column */
+
+    const optTagsListSelector = '.tags.list';
+    const tagList = document.querySelector(optTagsListSelector);
+
+    /* [DONE] add html from allTags to tagList */
+
+    tagList.innerHTML = allTags.join(' ');
   };
 
   generateTags();
