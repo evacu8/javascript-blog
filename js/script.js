@@ -84,8 +84,7 @@
 
     /* [DONE] find all articles */
 
-    const allArticles = document.querySelectorAll('.posts article');
-
+    const allArticles = document.querySelectorAll('.post');
 
     /* [DONE] START LOOP: for every article: */
 
@@ -135,7 +134,6 @@
 
     /* [DONE] END LOOP: for every article: */
     }
-
   };
 
   generateTags();
@@ -185,6 +183,48 @@
     /* [DONE] END LOOP: for each link */
     }
   };
+
+  const generateAuthors = function (){
+
+    /* [DONE] find all articles */
+
+    const allArticles = document.querySelectorAll('.post');
+
+    /* [DONE] START LOOP: for every article: */
+
+    for (let article of allArticles) {
+
+      /* [DONE] find authors wrapper (p)*/
+
+      const optArticleAuthorSelector = '.post-author';
+      const authorWrapper = article.querySelector(optArticleAuthorSelector);
+      console.log(authorWrapper);
+
+      /* [DONE] make html variable with empty string */
+
+      let authorLinkHTML = '';
+
+      /* [DONE] get author from data-author attribute */
+
+      const articleAuthor = article.getAttribute('data-author');
+      console.log(articleAuthor);
+
+      /* [DONE] generate HTML of the link */
+
+      authorLinkHTML = `<li><a href="#author-${articleAuthor}"><span>${articleAuthor}</span></a></li>`;
+
+      console.log(authorLinkHTML);
+
+      /* [DONE] insert HTML of the link into the author wrapper */
+
+      authorWrapper.innerHTML = `by ${authorLinkHTML}`;
+      console.log(authorLinkHTML);
+
+    /* [DONE] END LOOP: for every article: */
+    }
+  };
+
+  generateAuthors();
 
   addClickListenersToTags();
 }
