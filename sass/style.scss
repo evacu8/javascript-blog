@@ -8,6 +8,7 @@ $color-one: #192a56;
 $color-two: #f5f6fa;
 $color-three: rgba(0, 168, 255,0.25);
 $color-four: #2f3640;
+$color-five: #c23616;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -26,6 +27,11 @@ body {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.7;
+  li {
+    :hover{
+      color: $color-five;
+    }
+  }
 }
 
 .container {
