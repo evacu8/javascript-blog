@@ -80,6 +80,27 @@
 
   generateTitleLinks();
 
+  const calculateTagsParams = function(tags) {
+
+    /* create an object with min and max number of tag appearances */
+
+    const params = {'max': 0, 'min': 999999};
+
+    /* START LOOP: for every tag */
+    for (let tag in tags) {
+
+      /* replace params.max value if the tag count is higher */
+      if (tags[tag] > params.max) {
+        params.max = tags[tag];
+      } else if (params.min > tags[tag]) {
+        params.min = tags[tag];
+      }
+    }
+    /* END LOOP: for every tag */
+
+    return params;
+  };
+
   const generateTags = function (){
 
     /* [DONE] create a new variable allTags with an empty object */
@@ -142,6 +163,11 @@
 
     const optTagsListSelector = '.tags.list';
     const tagList = document.querySelector(optTagsListSelector);
+
+    /* [DONE] find min and max number of tag appearances */
+
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams:', tagsParams);
 
     /* [DONE] create variable for all links HTML code */
     let allTagsHTML = '';
