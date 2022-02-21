@@ -1,7 +1,7 @@
 {
   'use strict';
 
-  const titleClickHandler = function(event){
+  const titleClickHandler = function(event) {
     event.preventDefault();
     const clickedElement = this;
 
@@ -36,7 +36,7 @@
     selectedArticle.classList.add('active');
   };
 
-  const generateTitleLinks = function(customSelector = ''){
+  const generateTitleLinks = function(customSelector = '') {
 
     /* [DONE] for each article: */
 
@@ -89,7 +89,7 @@
     /* START LOOP: for every tag */
     for (let tag in tags) {
 
-      /* replace params.max value if the tag count is higher */
+      /* replace params.max value if the tag count is higher, replace params.min with the tag count if params.min is higher */
       if (tags[tag] > params.max) {
         params.max = tags[tag];
       } else if (params.min > tags[tag]) {
@@ -101,7 +101,25 @@
     return params;
   };
 
-  const generateTags = function (){
+  const optCloudClassCount = 5;
+  const optCloudClassPrefix = 'tag-size';
+
+  const calculateTagClass = function(count, params) {
+
+    /* calculate proportion of count to range */
+    const multiplier = (count - params.min) / (params.max - params.min);
+    // console.log(multiplier);
+
+    /* calculate rouded down class prefix */
+    const classNumber = Math.floor(multiplier * (optCloudClassCount - 1) + 1);
+    // console.log(`classNumber: ${classNumber}`);
+
+    /* return tag-size class */
+
+    return `${optCloudClassPrefix}-${classNumber}`;
+  };
+
+  const generateTags = function() {
 
     /* [DONE] create a new variable allTags with an empty object */
     let allTags = {};
@@ -175,17 +193,18 @@
     /* [DONE] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
       /* [DONE] generate code of a link and add it to allTagsHTML */
-      allTagsHTML += `<li><a href="#tag-${tag}"><span>${tag}</span></a> (${allTags[tag]})</li>`;
+      const tagLinkHTML = `<li><a href="#tag-${tag}" class"${calculateTagClass(allTags[tag], tagsParams)}"><span>${tag}</span></a> (${allTags[tag]})</li>`;
+      allTagsHTML += tagLinkHTML;
     }
     /* [DONE] END LOOP: for each tag in allTags: */
-
+    console.log(allTagsHTML);
     /* [DONE] add HTML from allTagsHTML to tagList */
     tagList.innerHTML = allTagsHTML;
   };
 
   generateTags();
 
-  const tagClickHandler = function (event){
+  const tagClickHandler = function(event) {
 
     /* [DONE] prevent default action for this event */
 
@@ -237,7 +256,7 @@
     generateTitleLinks(`[data-tags~="${tag}"]`);
   };
 
-  const addClickListenersToTags = function (){
+  const addClickListenersToTags = function() {
 
     /* [DONE] find all links to tags */
 
@@ -255,7 +274,7 @@
     }
   };
 
-  const generateAuthors = function (){
+  const generateAuthors = function() {
 
     /* [DONE] find all articles */
 
@@ -294,7 +313,7 @@
 
   addClickListenersToTags();
 
-  const authorClickHandler = function (event){
+  const authorClickHandler = function(event) {
 
     /* [DONE] prevent default action for this event */
 
@@ -346,7 +365,7 @@
     generateTitleLinks(`[data-author="${author}"]`);
   };
 
-  const addClickListenersToAuthors = function (){
+  const addClickListenersToAuthors = function() {
 
     /* [DONE] find all links to authors */
 
