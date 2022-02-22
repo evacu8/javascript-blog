@@ -179,27 +179,31 @@ body {
 /* Tags */
 
 .tags {
-  color: red;
   li {
     display: inline-block;
-    .tag-size-5 {
+    >.tag-size-5 {
+      font-size: 1.7em;
+      color: #012a4a;
+    }
+
+    >.tag-size-4 {
       font-size: 1.6em;
+      color: #013A63;
     }
 
-    .tag-size-4 {
+    >.tag-size-3 {
       font-size: 1.4em;
+      color: #014F86;
     }
 
-    .tag-size-3 {
+    >.tag-size-2 {
       font-size: 1.2em;
+      color: #2C7DA0;
     }
 
-    .tag-size-2 {
+    >.tag-size-1 {
       font-size: 1em;
-    }
-
-    .tag-size-1 {
-      font-size: 0.8em;
+      color: #468FAF;
     }
   }
 }

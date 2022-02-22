@@ -193,7 +193,7 @@
     /* [DONE] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
       /* [DONE] generate code of a link and add it to allTagsHTML */
-      const tagLinkHTML = `<li><a href="#tag-${tag}" class"${calculateTagClass(allTags[tag], tagsParams)}"><span>${tag}</span></a> (${allTags[tag]})</li>`;
+      const tagLinkHTML = `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}"><span>${tag} &nbsp</span></a></li>`;
       allTagsHTML += tagLinkHTML;
     }
     /* [DONE] END LOOP: for each tag in allTags: */
