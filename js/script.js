@@ -2,14 +2,29 @@
   'use strict';
 
   const opts = {
-    titleListSelector: '.titles',
-    articleSelector: '.post',
-    cloudClassCount: 5,
-    cloudClassPrefix: 'tag-size',
-    tagsListSelector: '.tags.list',
-    authorsListSelector: '.list.authors',
-    articleAuthorSelector: '.post-author',
-    articleTagsSelector: '.post-tags .list',
+    tagSizes: {
+      count: 5,
+      classPrefix: 'tag-size-',
+    },
+  };
+
+  const select = {
+    all: {
+      articles: '.post',
+      linksTo: {
+        tags: 'a[href^="#tag-"]',
+        authors: 'a[href^="#author-"]',
+      },
+    },
+    article: {
+      tags: '.post-tags .list',
+      author: '.post-author',
+    },
+    listOf: {
+      titles: '.titles',
+      tags: '.tags.list',
+      authors: '.authors.list',
+    },
   };
 
   const titleClickHandler = function(event) {
@@ -52,7 +67,7 @@
     /* [DONE] for each article: */
 
     const allArticles = document.querySelectorAll('.post' + customSelector);
-    const titleList = document.querySelector(opts.titleListSelector);
+    const titleList = document.querySelector(select.listOf.titles);
     let titleLinkHTML = '';
     let titleLinksListHTML = '';
 
@@ -119,12 +134,12 @@
     // console.log(multiplier);
 
     /* calculate rouded down class prefix */
-    const classNumber = Math.floor(multiplier * (opts.cloudClassCount - 1) + 1);
+    const classNumber = Math.floor(multiplier * (opts.tagSizes.count - 1) + 1);
     // console.log(`classNumber: ${classNumber}`);
 
     /* return tag-size class */
 
-    return `${opts.cloudClassPrefix}-${classNumber}`;
+    return `${opts.tagSizes.classPrefix}${classNumber}`;
   };
 
   const generateTags = function() {
@@ -134,7 +149,7 @@
 
     /* [DONE] find all articles */
 
-    const allArticles = document.querySelectorAll(opts.articleSelector);
+    const allArticles = document.querySelectorAll(select.all.articles);
 
     /* [DONE] START LOOP: for every article: */
 
@@ -142,7 +157,7 @@
 
       /* [DONE] find tags wrapper (ul)*/
 
-      const tagsWrapper = article.querySelector(opts.articleTagsSelector);
+      const tagsWrapper = article.querySelector(select.article.tags);
 
       /* [DONE] make html variable with empty string */
 
@@ -186,7 +201,7 @@
     }
     /* [DONE] find list of tags in right column */
 
-    const tagList = document.querySelector(opts.tagsListSelector);
+    const tagList = document.querySelector(select.listOf.tags);
 
     /* [DONE] find min and max number of tag appearances */
 
@@ -287,7 +302,7 @@
     /* [DONE] find all articles */
 
     const allArticles = document.querySelectorAll('.post');
-    const authorsList = document.querySelector(opts.authorsListSelector);
+    const authorsList = document.querySelector(select.listOf.authors);
 
     /* create variable for all author links */
     let allAuthorsHTML = '';
@@ -298,7 +313,7 @@
 
       /* [DONE] find authors wrapper (p)*/
 
-      const authorWrapper = article.querySelector(opts.articleAuthorSelector);
+      const authorWrapper = article.querySelector(select.article.author);
 
       /* [DONE] make html variable with empty string */
 
