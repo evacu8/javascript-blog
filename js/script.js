@@ -1,6 +1,17 @@
 {
   'use strict';
 
+  const opts = {
+    titleListSelector: '.titles',
+    articleSelector: '.post',
+    cloudClassCount: 5,
+    cloudClassPrefix: 'tag-size',
+    tagsListSelector: '.tags.list',
+    authorsListSelector: '.list.authors',
+    articleAuthorSelector: '.post-author',
+    articleTagsSelector: '.post-tags .list',
+  };
+
   const titleClickHandler = function(event) {
     event.preventDefault();
     const clickedElement = this;
@@ -41,7 +52,7 @@
     /* [DONE] for each article: */
 
     const allArticles = document.querySelectorAll('.post' + customSelector);
-    const titlesListSelector = document.querySelector('ul.titles');
+    const titleList = document.querySelector(opts.titleListSelector);
     let titleLinkHTML = '';
     let titleLinksListHTML = '';
 
@@ -67,7 +78,7 @@
 
     /* [DONE] insert HTML variable into ul */
 
-    titlesListSelector.innerHTML = titleLinksListHTML;
+    titleList.innerHTML = titleLinksListHTML;
 
     /* [DONE] click event listener for title links */
 
@@ -101,9 +112,6 @@
     return params;
   };
 
-  const optCloudClassCount = 5;
-  const optCloudClassPrefix = 'tag-size';
-
   const calculateTagClass = function(count, params) {
 
     /* calculate proportion of count to range */
@@ -111,12 +119,12 @@
     // console.log(multiplier);
 
     /* calculate rouded down class prefix */
-    const classNumber = Math.floor(multiplier * (optCloudClassCount - 1) + 1);
+    const classNumber = Math.floor(multiplier * (opts.cloudClassCount - 1) + 1);
     // console.log(`classNumber: ${classNumber}`);
 
     /* return tag-size class */
 
-    return `${optCloudClassPrefix}-${classNumber}`;
+    return `${opts.cloudClassPrefix}-${classNumber}`;
   };
 
   const generateTags = function() {
@@ -126,7 +134,7 @@
 
     /* [DONE] find all articles */
 
-    const allArticles = document.querySelectorAll('.post');
+    const allArticles = document.querySelectorAll(opts.articleSelector);
 
     /* [DONE] START LOOP: for every article: */
 
@@ -134,8 +142,7 @@
 
       /* [DONE] find tags wrapper (ul)*/
 
-      const optArticleTagsSelector = '.post-tags .list';
-      const tagsWrapper = article.querySelector(optArticleTagsSelector);
+      const tagsWrapper = article.querySelector(opts.articleTagsSelector);
 
       /* [DONE] make html variable with empty string */
 
@@ -179,8 +186,7 @@
     }
     /* [DONE] find list of tags in right column */
 
-    const optTagsListSelector = '.tags.list';
-    const tagList = document.querySelector(optTagsListSelector);
+    const tagList = document.querySelector(opts.tagsListSelector);
 
     /* [DONE] find min and max number of tag appearances */
 
@@ -278,13 +284,10 @@
     /* [DONE] create a new variable allAuthors with an empty object */
     let allAuthors = {};
 
-    /* find list of authors in right column */
-    const optAuthorsListSelector = '.list.authors';
-
     /* [DONE] find all articles */
 
     const allArticles = document.querySelectorAll('.post');
-    const authorsList = document.querySelector(optAuthorsListSelector);
+    const authorsList = document.querySelector(opts.authorsListSelector);
 
     /* create variable for all author links */
     let allAuthorsHTML = '';
@@ -295,8 +298,7 @@
 
       /* [DONE] find authors wrapper (p)*/
 
-      const optArticleAuthorSelector = '.post-author';
-      const authorWrapper = article.querySelector(optArticleAuthorSelector);
+      const authorWrapper = article.querySelector(opts.articleAuthorSelector);
 
       /* [DONE] make html variable with empty string */
 
