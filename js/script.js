@@ -1,6 +1,10 @@
 {
   'use strict';
 
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+  };
+
   const opts = {
     tagSizes: {
       count: 5,
@@ -68,7 +72,6 @@
 
     const allArticles = document.querySelectorAll('.post' + customSelector);
     const titleList = document.querySelector(select.listOf.titles);
-    let titleLinkHTML = '';
     let titleLinksListHTML = '';
 
     for (let article of allArticles){
@@ -83,11 +86,12 @@
 
       /* [DONE] create HTML for li */
 
-      titleLinkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
 
       /* [DONE] join created HTML links into HTML variable */
 
-      titleLinksListHTML = titleLinksListHTML + titleLinkHTML;
+      titleLinksListHTML = titleLinksListHTML + linkHTML;
 
     }
 
