@@ -2,7 +2,8 @@
   'use strict';
 
   const templates = {
-    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   };
 
   const opts = {
@@ -166,7 +167,6 @@
       /* [DONE] make html variable with empty string */
 
       let tagLinksListHTML = '';
-      let tagLinkHTML = '';
 
       /* [DONE] get tags from data-tags attribute */
 
@@ -182,11 +182,13 @@
 
         /* [DONE] generate HTML of the link */
 
-        tagLinkHTML = `<li><a href="#tag-${tag}"><span>${tag}</span></a></li>`;
+        // tagLinkHTML = `<li><a href="#tag-${tag}"><span>${tag}</span></a></li>`;
+        const linkHTMLData = {tag: tag};
+        const linkHTML = templates.tagLink(linkHTMLData);
 
         /* [DONE] add generated code to html variable */
 
-        tagLinksListHTML = tagLinksListHTML + ' ' + tagLinkHTML;
+        tagLinksListHTML = tagLinksListHTML + ' ' + linkHTML;
 
         /* [DONE] check if this link is NOT already in allTags */
         if(!allTags[tag]) {
