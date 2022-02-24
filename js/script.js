@@ -5,6 +5,7 @@
     articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
     tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
     authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+    tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
   };
 
   const opts = {
@@ -214,18 +215,22 @@
     const tagsParams = calculateTagsParams(allTags);
 
     /* [DONE] create variable for all links HTML code */
-    let allTagsHTML = '';
+    const allTagsData = {tags: []};
 
     /* [DONE] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
-      /* [DONE] generate code of a link and add it to allTagsHTML */
-      const tagLinkHTML = `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}"><span>${tag} &nbsp</span></a></li>`;
-      allTagsHTML += tagLinkHTML;
+      /*  */
+
+      allTagsData.tags.push({
+        tag: tag,
+        count: allTags[tag],
+        className: calculateTagClass(allTags[tag], tagsParams)
+      });
     }
     /* [DONE] END LOOP: for each tag in allTags: */
 
-    /* [DONE] add HTML from allTagsHTML to tagList */
-    tagList.innerHTML = allTagsHTML;
+    /*  */
+    tagList.innerHTML = templates.tagCloudLink(allTagsData);
   };
 
   generateTags();
