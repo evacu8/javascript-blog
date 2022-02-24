@@ -4,6 +4,7 @@
   const templates = {
     articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
     tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+    authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
   };
 
   const opts = {
@@ -182,7 +183,6 @@
 
         /* [DONE] generate HTML of the link */
 
-        // tagLinkHTML = `<li><a href="#tag-${tag}"><span>${tag}</span></a></li>`;
         const linkHTMLData = {tag: tag};
         const linkHTML = templates.tagLink(linkHTMLData);
 
@@ -321,10 +321,6 @@
 
       const authorWrapper = article.querySelector(select.article.author);
 
-      /* [DONE] make html variable with empty string */
-
-      let authorLinkHTML = '';
-
       /* [DONE] get author from data-author attribute */
 
       const articleAuthor = article.getAttribute('data-author');
@@ -339,11 +335,12 @@
 
       /* [DONE] generate HTML of the link */
 
-      authorLinkHTML = `<li><a href="#author-${articleAuthor}"><span>${articleAuthor}</span></a></li>`;
+      const linkHTMLData = {author: articleAuthor};
+      const linkHTML = templates.authorLink(linkHTMLData);
 
       /* [DONE] insert HTML of the link into the author wrapper */
 
-      authorWrapper.innerHTML = `by ${authorLinkHTML}`;
+      authorWrapper.innerHTML = `by ${linkHTML}`;
 
     /* [DONE] END LOOP: for every article: */
     }
